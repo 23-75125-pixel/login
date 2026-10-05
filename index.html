@@ -1,0 +1,237 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e9ecef;
+        }
+
+        .container {
+            width: 360px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        #dashboard {
+            display: none;
+        }
+
+        .dashboard-box {
+            text-align: center;
+        }
+
+        .logout {
+            background: #c62828;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div class="container" id="loginPage">
+
+        <h1>Login</h1>
+
+        <form id="loginForm">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+            <p class="error" id="error">
+                Invalid username or password.
+            </p>
+
+        </form>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+    <div class="container" id="dashboard">
+
+        <div class="dashboard-box">
+
+            <h1>Dashboard</h1>
+
+            <br>
+
+            <p>
+                Welcome, <strong id="displayUsername"></strong>!
+            </p>
+
+            <br>
+
+            <p>
+                You have successfully logged in.
+            </p>
+
+            <br>
+
+           
+
+            <button class="logout" onclick="logout()">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const username =
+                document.getElementById("username").value;
+
+            const password =
+                document.getElementById("password").value;
+
+            /*
+             * INTENTIONALLY SIMPLE LAB LOGIN
+             *
+             * Username: admin
+             * Password: password123
+             */
+
+            if (
+                username === "admin" &&
+                password === "password123"
+            ) {
+
+                document.getElementById("loginPage")
+                    .style.display = "none";
+
+                document.getElementById("dashboard")
+                    .style.display = "block";
+
+                document.getElementById("displayUsername")
+                    .textContent = username;
+
+            } else {
+
+                document.getElementById("error")
+                    .style.display = "block";
+
+            }
+
+        });
+
+
+        function logout() {
+
+            document.getElementById("dashboard")
+                .style.display = "none";
+
+            document.getElementById("loginPage")
+                .style.display = "block";
+
+            document.getElementById("loginForm")
+                .reset();
+
+            document.getElementById("error")
+                .style.display = "none";
+        }
+
+    </script>
+
+</body>
+</html>
+```
